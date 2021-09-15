@@ -6,7 +6,7 @@ module.exports = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     };
-    await mongoose.connect("mongodb://localhost/girls", connectionParams);
+    await mongoose.connect(process.env.urlDB, connectionParams);
     console.log("Connected to database");
   } catch (error) {
     console.log("Could not connect to database");
