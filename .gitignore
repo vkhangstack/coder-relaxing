@@ -1,5 +1,5 @@
 node_modules/
 .vscode
-/public/upload/ima*
+/public/upload2
 .env
 adddb.mongodb
