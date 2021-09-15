@@ -7,7 +7,8 @@ const upload = require("../utils/imageUpload");
 girlsCute.get("/cute", async (_req, res) => {
   try {
     const cute = await cuteGirls.find();
-    res.status(200).send(cute);
+    // res.status(200).send(cute);
+    res.render("../views/girls", { data: cute });
     // res.render("../views/girls", { gai: cute });
   } catch (error) {
     res.status(400).send(error);
@@ -17,7 +18,8 @@ girlsCute.get("/cute/random", async (req, res) => {
   try {
     const getCute = await cuteGirls.find();
     const cute = getCute[Math.floor(Math.random() * getCute.length)];
-    res.status(200).send(cute);
+    //
+    res.render("../views/girls", { data: cute });
   } catch (error) {
     res.status(400).send(error);
   }
