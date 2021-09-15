@@ -17,8 +17,7 @@ girlsSexy.get("/sexy/random", async (req, res) => {
   try {
     const getSexy = await sexyGirls.find();
     const sexy = getSexy[Math.floor(Math.random() * getSexy.length)];
-    res.status(200).send(sexy);
-    // res.render("../views/girls", { data: sexy });
+    res.render("../views/randomGirls", { data: sexy });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -36,14 +35,16 @@ girlsSexy.post("/sexy", (req, res) => {
           image: req.file.filename,
         });
         if (!checkImage) {
-          const sexy = await new sexyGirls({
+          await new sexyGirls({
             image: req.file.filename,
             url: "/upload/" + req.file.filename,
             createdAt: Date.now(),
           }).save();
-          res.status(200).send(sexy);
+          res.render("../views/contribute/sexyContribute");
         } else {
-          res.send("Image already exist");
+          res.render("../views/contribute/sexyCont", {
+            message: "Image already exists",
+          });
         }
       }
     });

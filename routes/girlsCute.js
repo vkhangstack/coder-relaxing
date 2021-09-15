@@ -7,9 +7,7 @@ const upload = require("../utils/imageUpload");
 girlsCute.get("/cute", async (_req, res) => {
   try {
     const cute = await cuteGirls.find();
-    // res.status(200).send(cute);
     res.render("../views/girls", { data: cute });
-    // res.render("../views/girls", { gai: cute });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -18,8 +16,7 @@ girlsCute.get("/cute/random", async (req, res) => {
   try {
     const getCute = await cuteGirls.find();
     const cute = getCute[Math.floor(Math.random() * getCute.length)];
-    //
-    res.render("../views/girls", { data: cute });
+    res.render("../views/randomGirls", { data: cute });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -37,12 +34,14 @@ girlsCute.post("/cute", (req, res) => {
           image: req.file.filename,
         });
         if (!checkImage) {
-          const cute = await new cuteGirls({
+          await new cuteGirls({
             image: req.file.filename,
             url: "/upload/" + req.file.filename,
             createdAt: Date.now(),
           }).save();
-          res.status(200).send(cute);
+          res.render("../views/contribute/cuteContribute", {
+            message: "Upload image successfully",
+          });
         } else {
           res.send("Image already exist");
         }

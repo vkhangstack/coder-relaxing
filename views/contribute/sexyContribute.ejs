@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <%- include('../layout/head') %>
+      <link rel="stylesheet" href="/css/girls.css">
+      <link rel="stylesheet" href="/css/contribute.css">
+</head>
+
+<body>
+   <div class="container-fluid center">
+      <header class="header">Coder Relaxing</header>
+      <p class="xl">Bạn đang ở đóng góp Sexy Lady</p>
+      <div class="btn-group">
+         <a href="/api/v1/girls/contribute/sexy" class="btn btn-primary xl">Sexy Lady</a>
+      </div>
+      <div class="btn-contribute padding-10">
+         <button type="submit" class="btn btn-primary xl">
+            <a href="/api/v1/girls/sexy" class="a">Quay về</a>
+         </button>
+      </div>
+      <br>
+      <br>
+      <form action="/api/v1/girls/sexy" method="POST" enctype="multipart/form-data">
+         <div class=" input-group">
+            <input type="file" class="form-control" name="image" aria-label="Upload" accept="/"
+               onchange="loadFile(event)">
+            <button class="btn btn-outline-primary" type="submit">Upload</button>
+         </div>
+      </form>
+      <img src="" alt="" id="output" class="loading-image">
+   </div>
+   <script>
+      const loadFile = (event) => {
+         let output = document.getElementById('output');
+         output.src = URL.createObjectURL(event.target.files[0]);
+         output.onload = () => {
+            URL.revokeObjectURL(output.src)
+         }
+      };
+   </script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,7 +1,4 @@
 node_modules/
 .vscode
 public/upload
-routes/girls.js
-models/categoryModel.js
-models/girlsModel.js
-models/privateKey.js
+.env

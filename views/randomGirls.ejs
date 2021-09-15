@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <%- include('./layout/head') %>
+      <link rel="stylesheet" href="/css/randomGirls.css">
+</head>
+
+<body>
+   <div class="container-fluid center">
+      <%- include("./layout/header") %>
+         <div class="row padding-10">
+            <div>
+               <img src="<%= data.url %>" class="img-girls padding-10" alt="..." />
+            </div>
+         </div>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

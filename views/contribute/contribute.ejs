@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <%- include('../layout/head') %>
+      <link rel="stylesheet" href="/css/girls.css">
+</head>
+
+<body>
+   <div class="container-fluid center">
+      <header class="header">Coder Relaxing</header>
+      <p class="xl">Hãy chọn album mà bạn muốn đóng góp</p>
+      <div class="btn-group">
+         <a href="/api/v1/girls/contribute/cute" class="btn btn-primary xl" aria-current="page">Cute Girls</a>
+         <a href="/api/v1/girls/contribute/sexy" class="btn btn-primary xl">Sexy Lady</a>
+      </div>
+      <div class="btn-contribute padding-10">
+         <a href="/api/v1/girls/cute" class="btn btn-primary xl a">Quay về</a>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
