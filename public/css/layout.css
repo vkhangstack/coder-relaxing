@@ -50,6 +50,16 @@ body::-webkit-scrollbar {
    text-decoration: underline;
 }
 
+.feature {
+   position: relative;
+   top: -35px;
+   right: 125px;
+}
+
+.white {
+   color: #fff;
+}
+
 @media screen and (max-width: 965px) {
    .header {
       color: #126ec4;
