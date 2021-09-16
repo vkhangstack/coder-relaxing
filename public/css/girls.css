@@ -3,6 +3,11 @@
    max-height: 560px;
 }
 
+.img-girls:hover {
+   transform: scale(1.3);
+   /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 @media screen and (max-width: 764px) {
    .img-girls {
       max-width: 100%;

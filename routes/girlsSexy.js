@@ -3,6 +3,8 @@ const multer = require("multer");
 const girlsSexy = express.Router();
 const sexyGirls = require("../models/sexyLadyGirls");
 const upload = require("../utils/imageUpload");
+const fs = require("fs");
+const path = require("path");
 
 girlsSexy.get("/sexy", async (_req, res) => {
   try {
@@ -56,8 +58,10 @@ girlsSexy.post("/sexy", (req, res) => {
 });
 girlsSexy.delete("/sexy/:id", async (req, res) => {
   try {
-    const sexy = await sexyGirls.findByIdAndDelete({ _id: req.params.id });
-    res.status(200).send(sexy);
+    const sexy = await sexyGirls.findById({ _id: req.params.id });
+    fs.rmSync(path.join(__dirname, `../public/upload`, sexy.image));
+    const rmSexy = await sexyGirls.findByIdAndDelete({ _id: req.params.id });
+    res.status(200).send(rmSexy);
   } catch (error) {
     res.status(400).send(error);
   }
