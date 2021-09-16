@@ -25,10 +25,11 @@ girlsSexy.get("/sexy/random", async (req, res) => {
 girlsSexy.post("/sexy", (req, res) => {
   try {
     upload(req, res, async (err) => {
+      let checkFile = req.file.filename;
       if (err instanceof multer.MulterError) {
-        res.send(err.message);
+        res.render("../views/contribute/sexyContribute", { message: "" });
       } else if (err) {
-        res.send(err.message);
+        res.render("../views/contribute/sexyContribute", { message: "" });
       } else {
         // check image already exist
         const checkImage = await sexyGirls.findOne({
@@ -38,11 +39,12 @@ girlsSexy.post("/sexy", (req, res) => {
           await new sexyGirls({
             image: req.file.filename,
             url: "/upload/" + req.file.filename,
+            key: req.body.key,
             createdAt: Date.now(),
           }).save();
-          res.render("../views/contribute/sexyContribute");
+          res.render("../views/contribute/sexyContribute", { message: "" });
         } else {
-          res.render("../views/contribute/sexyCont", {
+          res.render("../views/contribute/sexyContribute", {
             message: "Image already exists",
           });
         }

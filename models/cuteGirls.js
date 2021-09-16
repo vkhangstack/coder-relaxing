@@ -8,7 +8,11 @@ const cuteGirlsSchema = new Schema({
   },
   url: {
     type: String,
-    required: true,
+    required: false,
+  },
+  key: {
+    type: String,
+    required: false,
   },
   createdAt: {
     type: Date,

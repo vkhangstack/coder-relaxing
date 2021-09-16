@@ -10,25 +10,31 @@
 <body>
    <div class="container-fluid center">
       <header class="header">Coder Relaxing</header>
-      <p class="xl white">Bạn đang ở đóng góp Cute Girls</p>
+      <p class="xl white">Please select the most Cute Girls photos</p>
       <div class="btn-group">
          <a href="/api/v1/girls/contribute/cute" class="btn btn-primary xl">Cute Girls</a>
       </div>
       <div class="btn-contribute padding-10">
          <button type="submit" class="btn btn-primary xl">
-            <a href="/api/v1/girls/cute" class="a">Quay về</a>
+            <a href="/api/v1/girls/cute" class="a">Go back</a>
          </button>
       </div>
-      <br>
-      <br>
-      <form action="/api/v1/girls/cute" method="POST">
-         <div class="input-group xl">
-            <input type="file" class="form-control" id="inputFile" aria-label="Upload" accept="/"
-               onchange="loadFile(event)">
+      <form action="/api/v1/girls/cute" method="POST" enctype="multipart/form-data">
+         <div class="input-group xl key">
+            <input type="file" class="form-control" id="inputFile" aria-label="Upload" name="image" accept="/"
+               onchange="loadFile(event)" required>
+            <input class="hide" id="getKey" name="key"> </input>
             <button class="btn btn-outline-primary" type="submit">Upload</button>
          </div>
       </form>
       <img src="" alt="" id="output" class="loading-image">
+      <% if(!message){ %>
+         <p class="xl white">Please select the image</p>
+         <% } else {%>
+            <p class="xl white">
+               <%=message %>
+            </p>
+            <% } %>
    </div>
    <script>
       const loadFile = (event) => {
@@ -38,6 +44,10 @@
             URL.revokeObjectURL(output.src)
          }
       };
+      (() => {
+         let output = document.getElementById('getKey');
+         output.value = localStorage.getItem('key');
+      })()
    </script>
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>

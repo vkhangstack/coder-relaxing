@@ -7,3 +7,12 @@
 .white {
    color: #fff;
 }
+
+.key {
+   width: 60%;
+   margin: 3% auto;
+}
+
+.hide {
+   display: none;
+}

@@ -1,5 +1,3 @@
 node_modules/
 .vscode
-/public/upload2
 .env
-adddb.mongodb

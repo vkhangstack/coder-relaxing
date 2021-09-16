@@ -7,6 +7,7 @@ const upload = require("../utils/imageUpload");
 girlsCute.get("/cute", async (_req, res) => {
   try {
     const cute = await cuteGirls.find();
+    cute.sort((a, b) => b.createdAt - a.createdAt);
     res.render("../views/girls", { data: cute });
   } catch (error) {
     res.status(400).send(error);
@@ -25,9 +26,9 @@ girlsCute.post("/cute", (req, res) => {
   try {
     upload(req, res, async (err) => {
       if (err instanceof multer.MulterError) {
-        res.send(err.message);
+        res.render("../views/contribute/cuteContribute", { message: "" });
       } else if (err) {
-        res.send(err.message);
+        res.render("../views/contribute/cuteContribute", { message: "" });
       } else {
         // check image already exist
         const checkImage = await cuteGirls.findOne({
@@ -37,13 +38,14 @@ girlsCute.post("/cute", (req, res) => {
           await new cuteGirls({
             image: req.file.filename,
             url: "/upload/" + req.file.filename,
+            key: req.body.key,
             createdAt: Date.now(),
           }).save();
-          res.render("../views/contribute/cuteContribute", {
-            message: "Upload image successfully",
-          });
+          res.render("../views/contribute/cuteContribute", { message: "" });
         } else {
-          res.send("Image already exist");
+          res.render("../views/contribute/cuteContribute", {
+            message: "Image already exists",
+          });
         }
       }
     });

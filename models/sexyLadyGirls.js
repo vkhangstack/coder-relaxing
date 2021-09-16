@@ -10,6 +10,10 @@ const sexyLadyGirlsSchema = new Schema({
     type: String,
     required: true,
   },
+  key: {
+    type: String,
+    required: false,
+  },
   createdAt: {
     type: Date,
     required: true,
