@@ -11,6 +11,6 @@
 @media screen and (max-width: 764px) {
    .img-girls {
       max-width: 100%;
-      max-height: 520px;
+      max-height: 100%;
    }
 }

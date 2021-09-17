@@ -36,19 +36,8 @@
             </p>
             <% } %>
    </div>
-   <script>
-      const loadFile = (event) => {
-         let output = document.getElementById('output');
-         output.src = URL.createObjectURL(event.target.files[0]);
-         output.onload = () => {
-            URL.revokeObjectURL(output.src)
-         }
-      };
-      (() => {
-         let output = document.getElementById('getKey');
-         output.value = localStorage.getItem('key');
-      })()
-   </script>
+   <script src="/js/preview.js"></script>
+   <script src="/js/get.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
 </body>

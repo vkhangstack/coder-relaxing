@@ -2,3 +2,7 @@
    max-width: 800px;
    max-height: 800px;
 }
+
+.img-girls:hover {
+   transform: scale(1.3);
+}

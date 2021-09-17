@@ -3,8 +3,8 @@ const key = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const privateKey = require("../models/privateKey");
 
-key.get("/key", async (req, res) => {
-  res.render("../views/contribute/login");
+key.get("/key", async (_req, res) => {
+  return res.render("../views/contribute/login");
 });
 key.post("/key", async (_req, res) => {
   try {
@@ -14,9 +14,9 @@ key.post("/key", async (_req, res) => {
       createdAt: Date.now(),
       updatedAt: Date.now(),
     }).save();
-    res.render("../views/contribute/admin", { data: key });
+    return res.render("../views/contribute/admin", { data: key });
   } catch (error) {
-    res.send(error);
+    return res.send(error);
   }
 });
 
@@ -26,12 +26,14 @@ key.post("/login", async (req, res) => {
       key: req.body.key,
     });
     if (!checkLogin) {
-      res.send("Not Ok");
+      return res.render("../views/contribute/login", {
+        message: "Your key does not exist.",
+      });
     } else {
       if (checkLogin.role === "admin") {
-        res.render("../views/contribute/admin", { data: "" });
+        return res.render("../views/contribute/admin", { data: "" });
       } else {
-        res.render("../views/contribute/contribute", {
+        return res.render("../views/contribute/contribute", {
           key: checkLogin.key,
         });
       }
@@ -44,9 +46,9 @@ key.post("/login", async (req, res) => {
 key.delete("/key/:id", async (req, res) => {
   try {
     const key = privateKey.findByIdAndDelete({ _id: req.params.id });
-    res.status(200).send(key);
+    return res.status(200).send(key);
   } catch (error) {
-    res.send(error);
+    return res.send(error);
   }
 });
 module.exports = key;

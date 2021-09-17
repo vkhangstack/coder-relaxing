@@ -10,27 +10,31 @@ girlsCute.get("/cute", async (_req, res) => {
   try {
     const cute = await cuteGirls.find();
     cute.sort((a, b) => b.createdAt - a.createdAt);
-    res.render("../views/girls", { data: cute });
+    return res.render("../views/girls", { data: cute });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 girlsCute.get("/cute/random", async (req, res) => {
   try {
     const getCute = await cuteGirls.find();
     const cute = getCute[Math.floor(Math.random() * getCute.length)];
-    res.render("../views/randomGirls", { data: cute });
+    return res.render("../views/randomGirls", { data: cute });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 girlsCute.post("/cute", (req, res) => {
   try {
     upload(req, res, async (err) => {
       if (err instanceof multer.MulterError) {
-        res.render("../views/contribute/cuteContribute", { message: "" });
+        return res.render("../views/contribute/cuteContribute", {
+          message: "",
+        });
       } else if (err) {
-        res.render("../views/contribute/cuteContribute", { message: "" });
+        return res.render("../views/contribute/cuteContribute", {
+          message: "",
+        });
       } else {
         // check image already exist
         const checkImage = await cuteGirls.findOne({
@@ -43,16 +47,18 @@ girlsCute.post("/cute", (req, res) => {
             key: req.body.key,
             createdAt: Date.now(),
           }).save();
-          res.render("../views/contribute/cuteContribute", { message: "" });
+          return res.render("../views/contribute/cuteContribute", {
+            message: "",
+          });
         } else {
-          res.render("../views/contribute/cuteContribute", {
+          return res.render("../views/contribute/cuteContribute", {
             message: "Image already exists",
           });
         }
       }
     });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 girlsCute.delete("/cute/:id", async (req, res) => {
@@ -60,9 +66,9 @@ girlsCute.delete("/cute/:id", async (req, res) => {
     const cute = await cuteGirls.findById({ _id: req.params.id });
     fs.rmSync(path.join(__dirname, `../public/upload`, cute.image));
     const rmCute = await cuteGirls.findByIdAndDelete({ _id: req.params.id });
-    res.status(200).send(rmCute);
+    return res.status(200).send(rmCute);
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 /**delete all */

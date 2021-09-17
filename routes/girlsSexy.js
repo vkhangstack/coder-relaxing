@@ -10,18 +10,18 @@ girlsSexy.get("/sexy", async (_req, res) => {
   try {
     const sexy = await sexyGirls.find();
     sexy.sort((a, b) => b.createdAt - a.createdAt);
-    res.render("../views/girls", { data: sexy });
+    return res.render("../views/girls", { data: sexy });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 girlsSexy.get("/sexy/random", async (req, res) => {
   try {
     const getSexy = await sexyGirls.find();
     const sexy = getSexy[Math.floor(Math.random() * getSexy.length)];
-    res.render("../views/randomGirls", { data: sexy });
+    return res.render("../views/randomGirls", { data: sexy });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 girlsSexy.post("/sexy", (req, res) => {
@@ -29,9 +29,13 @@ girlsSexy.post("/sexy", (req, res) => {
     upload(req, res, async (err) => {
       let checkFile = req.file.filename;
       if (err instanceof multer.MulterError) {
-        res.render("../views/contribute/sexyContribute", { message: "" });
+        return res.render("../views/contribute/sexyContribute", {
+          message: "",
+        });
       } else if (err) {
-        res.render("../views/contribute/sexyContribute", { message: "" });
+        return res.render("../views/contribute/sexyContribute", {
+          message: "",
+        });
       } else {
         // check image already exist
         const checkImage = await sexyGirls.findOne({
@@ -44,16 +48,18 @@ girlsSexy.post("/sexy", (req, res) => {
             key: req.body.key,
             createdAt: Date.now(),
           }).save();
-          res.render("../views/contribute/sexyContribute", { message: "" });
+          return res.render("../views/contribute/sexyContribute", {
+            message: "",
+          });
         } else {
-          res.render("../views/contribute/sexyContribute", {
+          return res.render("../views/contribute/sexyContribute", {
             message: "Image already exists",
           });
         }
       }
     });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 girlsSexy.delete("/sexy/:id", async (req, res) => {
@@ -63,7 +69,7 @@ girlsSexy.delete("/sexy/:id", async (req, res) => {
     const rmSexy = await sexyGirls.findByIdAndDelete({ _id: req.params.id });
     res.status(200).send(rmSexy);
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 /**delete all */
