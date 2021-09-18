@@ -1,16 +1,16 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "coder-relaxing",
+  "version": "0.1.3",
+  "description": "coder relaxing hx10r vkhang",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo Not a file test, you create test, please",
     "lint": "eslint"
   },
   "keywords": [],
-  "author": "",
+  "author": "vkhang",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
