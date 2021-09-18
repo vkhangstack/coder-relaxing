@@ -27,7 +27,6 @@ girlsSexy.get("/sexy/random", async (req, res) => {
 girlsSexy.post("/sexy", (req, res) => {
   try {
     upload(req, res, async (err) => {
-      let checkFile = req.file.filename;
       if (err instanceof multer.MulterError) {
         return res.render("../views/contribute/sexyContribute", {
           message: "",
