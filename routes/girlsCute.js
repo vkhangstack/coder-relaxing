@@ -80,6 +80,7 @@ girlsCute.delete("/cute", async (req, res) => {
     res.send(error);
   }
 });
+/**delete all and remove all images API hide*/
 girlsCute.delete("/all", async (req, res) => {
   try {
     fs.rmSync(path.join(__dirname, `../public/upload/image*`));

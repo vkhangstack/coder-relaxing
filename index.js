@@ -24,5 +24,6 @@ app.get("/", (_req, res) => res.redirect("/api/v1/girls/cute"));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server on listening port ${PORT}...`);
 });
