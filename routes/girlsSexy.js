@@ -1,39 +1,39 @@
-const express = require("express");
-const multer = require("multer");
+const express = require('express');
+const multer = require('multer');
 const girlsSexy = express.Router();
-const sexyGirls = require("../models/sexyLadyGirls");
-const upload = require("../utils/imageUpload");
-const fs = require("fs");
-const path = require("path");
+const sexyGirls = require('../models/sexyLadyGirls');
+const upload = require('../utils/imageUpload');
+const fs = require('fs');
+const path = require('path');
 
-girlsSexy.get("/sexy", async (_req, res) => {
+girlsSexy.get('/sexy', async (_req, res) => {
   try {
     const sexy = await sexyGirls.find();
     sexy.sort((a, b) => b.createdAt - a.createdAt);
-    return res.render("../views/girls", { data: sexy });
+    return res.render('../views/girls', { data: sexy });
   } catch (error) {
     return res.status(400).send(error);
   }
 });
-girlsSexy.get("/sexy/random", async (req, res) => {
+girlsSexy.get('/sexy/random', async (req, res) => {
   try {
     const getSexy = await sexyGirls.find();
     const sexy = getSexy[Math.floor(Math.random() * getSexy.length)];
-    return res.render("../views/randomGirls", { data: sexy });
+    return res.render('../views/randomGirls', { data: sexy });
   } catch (error) {
     return res.status(400).send(error);
   }
 });
-girlsSexy.post("/sexy", (req, res) => {
+girlsSexy.post('/sexy', (req, res) => {
   try {
     upload(req, res, async (err) => {
       if (err instanceof multer.MulterError) {
-        return res.render("../views/contribute/sexyContribute", {
-          message: "",
+        return res.render('../views/contribute/sexyContribute', {
+          message: '',
         });
       } else if (err) {
-        return res.render("../views/contribute/sexyContribute", {
-          message: "",
+        return res.render('../views/contribute/sexyContribute', {
+          message: '',
         });
       } else {
         // check image already exist
@@ -43,16 +43,16 @@ girlsSexy.post("/sexy", (req, res) => {
         if (!checkImage) {
           await new sexyGirls({
             image: req.file.filename,
-            url: "/upload/" + req.file.filename,
+            url: '/upload/' + req.file.filename,
             key: req.body.key,
             createdAt: Date.now(),
           }).save();
-          return res.render("../views/contribute/sexyContribute", {
-            message: "",
+          return res.render('../views/contribute/sexyContribute', {
+            message: '',
           });
         } else {
-          return res.render("../views/contribute/sexyContribute", {
-            message: "Image already exists",
+          return res.render('../views/contribute/sexyContribute', {
+            message: 'Image already exists',
           });
         }
       }
@@ -61,7 +61,7 @@ girlsSexy.post("/sexy", (req, res) => {
     return res.status(400).send(error);
   }
 });
-girlsSexy.delete("/sexy/:id", async (req, res) => {
+girlsSexy.delete('/sexy/:id', async (req, res) => {
   try {
     const sexy = await sexyGirls.findById({ _id: req.params.id });
     fs.rmSync(path.join(__dirname, `../public/upload`, sexy.image));
@@ -72,7 +72,7 @@ girlsSexy.delete("/sexy/:id", async (req, res) => {
   }
 });
 /**delete all */
-girlsSexy.delete("/sexy", async (req, res) => {
+girlsSexy.delete('/sexy', async (req, res) => {
   try {
     const sexy = await sexyGirls.remove();
     res.send(sexy);
