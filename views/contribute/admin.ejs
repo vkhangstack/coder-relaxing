@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <%- include('../layout/head.ejs')%>
+      <link rel="stylesheet" href="/css/contribute.css">
+</head>
+
+<body>
+   <div class="container-fluid center">
+      <header class="header">Coder Relaxing</header>
+      <div class="btn-contribute padding-10">
+         <a href="/api/v1/girls/cute" class="btn btn-primary xl a">Go back</a>
+      </div>
+      <p class="xl white">Create Key</p>
+      <form action="/api/v1/girls/key" method="POST">
+         <div class="input-group mb-3 key">
+            <% if(!data || !data.key){ %>
+               <input class="form-control" value=""></input>
+               <%} else {%>
+                  <input class="form-control" value="<%=data.key%>"></input>
+                  <%} %>
+                     <button class="btn btn-outline-primary" type="submit" id="login">Create Key</button>
+         </div>
+      </form>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

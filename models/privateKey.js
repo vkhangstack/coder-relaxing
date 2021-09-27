@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const privateKeySchema = new Schema({
@@ -20,4 +20,4 @@ const privateKeySchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("privateKey", privateKeySchema);
+module.exports = mongoose.model('privateKey', privateKeySchema);

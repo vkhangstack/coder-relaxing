@@ -1,1 +1,2 @@
-## Backend project Ngam Gai
+## Project Code Relaxing
+> Make it run, Make it work, Make it fast

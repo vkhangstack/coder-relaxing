@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "rules": {
+    "array-callback-return": "warn",
+    "no-dupe-keys": "warn",
+    "no-console": "error",
+    "no-return-await": "warn"
+  }
+}

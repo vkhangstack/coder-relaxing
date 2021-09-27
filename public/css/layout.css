@@ -50,15 +50,6 @@ body::-webkit-scrollbar {
    text-decoration: underline;
 }
 
-.feature {
-   position: relative;
-   top: -35px;
-   right: 125px;
-}
-
-.white {
-   color: #fff;
-}
 
 @media screen and (max-width: 965px) {
    .header {
@@ -83,4 +74,10 @@ body::-webkit-scrollbar {
    }
 
 
+}
+
+@media screen and (max-width: 764px) {
+   .btn-contribute {
+      display: none;
+   }
 }

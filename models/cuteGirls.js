@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const cuteGirlsSchema = new Schema({
@@ -8,7 +8,11 @@ const cuteGirlsSchema = new Schema({
   },
   url: {
     type: String,
-    required: true,
+    required: false,
+  },
+  key: {
+    type: String,
+    required: false,
   },
   createdAt: {
     type: Date,
@@ -16,4 +20,4 @@ const cuteGirlsSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("cuteGirls", cuteGirlsSchema);
+module.exports = mongoose.model('cuteGirls', cuteGirlsSchema);

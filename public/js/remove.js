@@ -1,0 +1,3 @@
+(() => {
+  localStorage.removeItem("key");
+})();

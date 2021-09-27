@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const sexyLadyGirlsSchema = new Schema({
@@ -10,10 +10,14 @@ const sexyLadyGirlsSchema = new Schema({
     type: String,
     required: true,
   },
+  key: {
+    type: String,
+    required: false,
+  },
   createdAt: {
     type: Date,
     required: true,
   },
 });
 
-module.exports = mongoose.model("sexyLadyGirls", sexyLadyGirlsSchema);
+module.exports = mongoose.model('sexyLadyGirls', sexyLadyGirlsSchema);
