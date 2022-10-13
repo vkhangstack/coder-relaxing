@@ -64,7 +64,7 @@ girlsSexy.post('/sexy', (req, res) => {
 girlsSexy.delete('/sexy/:id', async (req, res) => {
   try {
     const sexy = await sexyGirls.findById({ _id: req.params.id });
-    fs.rmSync(path.join(__dirname, `../public/upload`, sexy.image));
+    // fs.rmSync(path.join(__dirname, `../public/upload`, sexy.image));
     const rmSexy = await sexyGirls.findByIdAndDelete({ _id: req.params.id });
     res.status(200).send(rmSexy);
   } catch (error) {
